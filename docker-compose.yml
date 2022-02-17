@@ -5,7 +5,6 @@ services:
     build: .
     user: "${KONG_USER:-kong}"
     volumes:
-      - ./plugins:/usr/local/kong/js-plugins
       - ./config:/etc/kong/declarative
     environment:
       # Use the config defined in config/kong.yml
@@ -22,9 +21,10 @@ services:
       KONG_PLUGINSERVER_JS_START_CMD: /usr/local/bin/kong-js-pluginserver -v --plugins-directory /usr/local/kong/js-plugins
       KONG_PLUGINSERVER_JS_QUERY_CMD: /usr/local/bin/kong-js-pluginserver --plugins-directory /usr/local/kong/js-plugins --dump-all-plugins
       # Allow plugins to be used. The plugin name is your JS file name e.g. hello.js
-      KONG_PLUGINS: bundled
+      KONG_PLUGINS: bundled,js-hello
     ports:
       - "8000:8000/tcp"
+      - "8001:8001"
     healthcheck:
       test: ["CMD", "kong", "health"]
       interval: 10s

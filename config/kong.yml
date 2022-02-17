@@ -4,3 +4,9 @@ _transform: true
 services:
   - name: example-service
     url: https://mockbin.org
+    plugins:
+    - name: js-hello
+    routes:
+    - name: my-route
+      paths:
+      - /
