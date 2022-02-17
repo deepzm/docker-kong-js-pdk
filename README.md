@@ -16,6 +16,28 @@ $ docker-compose up
 
 Kong will be available on port `8000` on your local machine.
 
+```shell
+$ curl -v http://localhost:8000/
+```
+
+When running with database setup the service, routes and plugins as below
+
+```shell
+$ curl -i -X POST \
+  --url http://localhost:8001/services/ \
+  --data 'name=example-service' \
+  --data 'url=http://mockbin.org'
+
+$ curl -i -X POST \
+  --url http://localhost:8001/services/example-service/routes \
+  --data 'paths[]=/'
+
+$ curl -i -X POST \
+  --url http://localhost:8001/services/example-service/plugins/ \
+  --data 'name=js-hello'
+```
+
+
 Kong's documentation can be found at [https://docs.konghq.com/][kong-docs-url].
 
 ## Issues
