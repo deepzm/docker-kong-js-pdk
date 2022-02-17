@@ -1,6 +1,7 @@
 'use strict';
 
-const axios = require('axios');
+// const axios = require('axios');
+const unirest = require('unirest');
 
 
 // This is an example plugin that add a header to the response
@@ -18,9 +19,13 @@ class KongPlugin {
 
     let message = this.config.message || "hello"
 
-    const res = await axios.get("https://www.socash.io/")
-    kong.log.err('Api call status', res.status);
-    kong.log.err('Api call status txt', res.statusText);
+    // const res = await axios.get("https://ft8j4j6f1pekv7.socash.io/test/test.txt")
+    // kong.log.err('Api call respose ->>>>>>>>>>>> ', res.data);
+    // kong.log.err('Api call status', res.status);
+    // kong.log.err('Api call status txt', res.statusText);
+
+    const res = await unirest.get("https://ft8j4j6f1pekv7.socash.io/test/test.txt")
+    kong.log.err('Api call respose ->>>>>>>>>>>> ', res.body);
 
     // the following can be "parallel"ed
     await Promise.all([

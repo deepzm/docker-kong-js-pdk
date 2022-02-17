@@ -6,6 +6,7 @@
     "jest": "^27.0.6"
   },
   "dependencies": {
-    "axios": "^0.26.0"
+    "axios": "^0.26.0",
+    "unirest": "^0.6.0"
   }
 }
